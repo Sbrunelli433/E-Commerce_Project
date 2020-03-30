@@ -1,4 +1,5 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import './menu-item.styles.scss';
 
@@ -11,8 +12,9 @@ instead of hard coding in each individual image for each component*/
 
 /*need to add white background style for the content. Done in the menu-item.styles.scss
  need to add a hover effect to increase the size of background image and transition the opacity */
-const MenuItem = ({title, imageUrl, size}) => (
-    <div className={`${size} menu-item`}>
+const MenuItem = ({title, imageUrl, size, history, linkUrl, match }) => (
+    //below links the buttons to the url
+    <div className={`${size} menu-item`} onClick={() => history.push(`${match.url}${linkUrl}`)}>
         <div 
             className ='background-image' 
             style={{
@@ -26,4 +28,4 @@ const MenuItem = ({title, imageUrl, size}) => (
     </div>
 );
 
-export default MenuItem;
+export default withRouter(MenuItem);

@@ -7,10 +7,10 @@
     justify-content: center;
     border: 1px solid black;
     margin: 0 7.5px 15px;
+    //overflow: hidden; keeps the cubic-bezier transformation within the borders of the menu-item;
     overflow: hidden;
 /*hover changes the cursor to a pointer and transitions and transforms 
-the scale of the background image
-*/
+the scale of the background image*/
     &:hover {
       cursor: pointer;
     
