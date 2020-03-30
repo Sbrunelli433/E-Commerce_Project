@@ -1,5 +1,6 @@
 import React from 'react';
 
+//import the MenuItem
 import MenuItem from '../menu-item/menu-item.component';
 
 import './directory.styles.scss';
@@ -50,6 +51,8 @@ class Directory extends React.Component{
     
     render(){
         return(
+            /*this allows the menu-item.component.jsx to dynamically populate the array items to the 
+            menu-item.component as it is imported in*/
             <div className='directory-menu'>
             {
                 this.state.sections.map(({title, imageUrl, id,size}) => (
