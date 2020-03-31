@@ -2,9 +2,13 @@ import React from 'react';
 
 import FormInput from '../form-input/form-input.component.jsx';
 
+import CustomButton from '../custom-button/custom-button.component.jsx';
+
 import './sign-in.styles.scss';
 
 //class component to store information
+//write this to be reusable!
+//add functionality as it is required! Not all at once!
 
 class SignIn extends React.Component{
     constructor(props){
@@ -30,7 +34,7 @@ class SignIn extends React.Component{
         this.setState({[name]: value});
     };
 
-
+    //have both 
     render(){
         return (
             <div className='sign-in'>
@@ -49,14 +53,18 @@ class SignIn extends React.Component{
                     <FormInput 
                         name="password" 
                         type="password" 
-                        value={this.state.email} 
+                        value={this.state.password} 
                         handleChange={this.handleChange}
                         label="password"
                         required
-                        />
+                        /> 
+                    {/*below has both input and CustomButton to show the progression of the code
+                    and how the I was able to create both and trigger the onSubmit method */}
                     <input type='submit' value='Submit Form' />
+                    <CustomButton type='submit'>CUSTOM BUTTON</CustomButton>
                 </form>
             </div>
+            
         );
     }
 }
