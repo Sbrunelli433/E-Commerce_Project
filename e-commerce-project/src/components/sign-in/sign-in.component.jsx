@@ -4,6 +4,8 @@ import FormInput from '../form-input/form-input.component.jsx';
 
 import CustomButton from '../custom-button/custom-button.component.jsx';
 
+import {signInWithGoogle} from '../../firebase/firebase.utils';
+
 import './sign-in.styles.scss';
 
 //class component to store information
@@ -60,8 +62,9 @@ class SignIn extends React.Component{
                         /> 
                     {/*below has both input and CustomButton to show the progression of the code
                     and how the I was able to create both and trigger the onSubmit method */}
-                    <input type='submit' value='Submit Form' />
+                   
                     <CustomButton type='submit'>CUSTOM BUTTON</CustomButton>
+                    <CustomButton onClick={signInWithGoogle}>Sign In With Google</CustomButton>
                 </form>
             </div>
             

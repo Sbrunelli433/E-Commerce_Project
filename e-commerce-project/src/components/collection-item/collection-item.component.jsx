@@ -2,7 +2,7 @@ import React from 'react';
 
 
 import './collection-item.style.scss';
-import CollectionPreview from '../collection-preview/collection-preview.component';
+//import CollectionPreview from '../collection-preview/collection-preview.component';
 
 //do not need state
 
