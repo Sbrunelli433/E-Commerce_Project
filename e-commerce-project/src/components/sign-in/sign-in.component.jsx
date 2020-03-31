@@ -59,12 +59,15 @@ class SignIn extends React.Component{
                         handleChange={this.handleChange}
                         label="password"
                         required
-                        /> 
+                    /> 
                     {/*below has both input and CustomButton to show the progression of the code
                     and how the I was able to create both and trigger the onSubmit method */}
-                   
-                    <CustomButton type='submit'>CUSTOM BUTTON</CustomButton>
-                    <CustomButton onClick={signInWithGoogle}>Sign In With Google</CustomButton>
+                   <div className='buttons'>
+                        <CustomButton type='submit'>SIGN IN</CustomButton>
+                        <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+                            Sign In With Google
+                        </CustomButton>
+                    </div>
                 </form>
             </div>
             
