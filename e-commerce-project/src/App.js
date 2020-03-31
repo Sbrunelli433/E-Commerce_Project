@@ -6,7 +6,7 @@ import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
 import Header from './components/header/header.component.jsx';
-import {auth} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 
 /*use <Switch> to have more control over the code and where the user can go and if only one route
 matches, it is the only thing that'll be rendered */
@@ -26,10 +26,11 @@ class  App extends React.Component {
     the user closes the window and comes back to the application 
     THIS IS OPENS THE SUBSCRIPTION*/
     componentDidMount(){
-      this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-        this.setState({currentUser: user});
+      this.unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
+        createUserProfileDocument(user);
+        //this.setState({currentUser: user});
 
-        console.log(user);
+        //console.log(user);
       });
     }
     /*THIS CLOSES THE SUBSCRIPTION */
