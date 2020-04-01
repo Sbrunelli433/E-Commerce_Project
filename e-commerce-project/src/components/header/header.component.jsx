@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import{auth} from '../../firebase/firebase.utils';
 import { ReactComponent as Logo }from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
+import CartDropdown from '../cart-dropdown/cart-dropdown.component';
 
 import'./header.styles.scss';
 
@@ -13,7 +14,7 @@ And a logo that links to the homepage.
 
 */
 
-const Header = ({currentUser}) => (
+const Header = ({currentUser, hidden}) => (
     <div className='header'>
     <Link className='logo-container' to="/">
         <Logo className='logo'/>
@@ -38,14 +39,21 @@ const Header = ({currentUser}) => (
                     SIGN IN
                 </Link>
             )}
-            <CartIcon/>
+            <CartIcon />
         </div>
+        {
+            hidden ? null : 
+            <CartDropdown />
+        }
+        
     </div>
 );
 
 //use this to get currentUser value (null) passed in as the current user
-const mapStateToProps = state => ({
-    currentUser: state.user.currentUser
+//destructure state to get nested values. Note the syntax with the curly braces
+const mapStateToProps = ({user: {currentUser},cart: {hidden}}) => ({
+    currentUser,
+    hidden
 });
 
  export default connect(mapStateToProps)(Header);
