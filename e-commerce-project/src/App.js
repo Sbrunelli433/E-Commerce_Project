@@ -1,7 +1,8 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import './App.css';
+
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
@@ -52,12 +53,18 @@ class  App extends React.Component {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component={ShopPage} />
-          <Route path='/signin' component={SignInAndSignUpPage}/>
+          {/*below checks to see if a user is signed in and redirects back to the homepage if a user is signed in */}
+          <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInAndSignUpPage/>)}/>
         </Switch>
         </div>
       );
     }
 }
+
+
+const mapStateToProps = ({ user }) => ({
+  currentUser: user.currentUser
+});
 
 //dispatch is passing through an action object that is going to every producer
 //this makes our user action a function that gets the user but returns an action object
@@ -65,5 +72,8 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-//null as the first argument because we don't need any state of props from our reducer
-export default connect(null, mapDispatchToProps)(App);
+
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(App);
