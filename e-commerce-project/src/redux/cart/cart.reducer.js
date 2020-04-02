@@ -23,7 +23,7 @@ const cartReducer = (state = INITIAL_STATE, action) => {
                 We instead use the below code */
                 cartItems:addItemToCart(state.cartItems, action.payload)
                 
-            }
+            };
             default: 
                 return state;
         }
