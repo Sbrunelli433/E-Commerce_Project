@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import { selectCartItems } from '../../redux/cart/cart.selectors'
 
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
@@ -23,8 +24,8 @@ const CartDropdown = ({ cartItems }) => (
     </div>
 );
 
-//destructure cartItems and pass it through to mapStateToProps
-const mapStateToProps = ({cart: { cartItems } }) => ({
-    cartItems
+//brings in state and selectCartItems to avoid re-rendering the page and keep the cart full when user signs out
+const mapStateToProps = (state) => ({
+    cartItems: selectCartItems(state)
 });
  export default connect(mapStateToProps)(CartDropdown);
