@@ -11,4 +11,9 @@ this is called in the collection-item.component.jsx to add items to the cart*/
 export const addItem= item => ({
     type: CartActionTypes.ADD_ITEM,
     payload: item
-})
+});
+
+export const clearItemFromCart = item => ({
+    type: CartActionTypes.CLEAR_ITEM_FROM_CART,
+    payload: item
+});
