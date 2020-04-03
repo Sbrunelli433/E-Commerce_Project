@@ -8,12 +8,13 @@ import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
 
 import { selectCartItems } from '../../redux/cart/cart.selectors'
+import { toggleCartHidden } from '../../redux/cart/cart.actions';
 
 import './cart-dropdown.styles.scss';
 
 
 //regular stateless component
-const CartDropdown = ({ cartItems, history }) => (
+const CartDropdown = ({ cartItems, history, dispatch }) => (
     <div className='cart-dropdown'>
         <div className='cart-items'>
             {
@@ -27,7 +28,13 @@ const CartDropdown = ({ cartItems, history }) => (
                 )
             }
         </div>
-        <CustomButton onClick={() => history.push('/checkout')}>GO TO CHECKOUT</CustomButton>
+        {/*shorthand dispatch here to hide the cart when user clicks "go to checkout" button and is sent to the checkout page*/}
+        <CustomButton onClick={() => {
+            history.push('/checkout')
+            dispatch(toggleCartHidden());
+        }}>
+            GO TO CHECKOUT
+        </CustomButton>
     </div>
 );
 
@@ -35,6 +42,8 @@ const CartDropdown = ({ cartItems, history }) => (
 const mapStateToProps = createStructuredSelector ({
     cartItems: selectCartItems
 });
+
+
 /*wrapping components like this evaluates them from the inside out. So we get the connect component
 first and is passed through as the withRouter component argument. This gives the cart-dropdown component
 access to the props we're looking for*/
