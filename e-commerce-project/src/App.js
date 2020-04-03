@@ -1,16 +1,23 @@
 import React from 'react';
-import {Switch, Route, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import { Switch, Route, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
 import './App.css';
+
+import Header from './components/header/header.component.jsx';
 
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component.jsx';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx';
-import Header from './components/header/header.component.jsx';
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import CheckoutPage from './pages/checkout/checkout.component';
+
+import { auth, createUserProfileDocument } from './firebase/firebase.utils';
+
 import { setCurrentUser } from './redux/user/user.actions';
-import {selectCurrentUser} from './redux/user/user.selectors';
-import {createStructuredSelector} from 'reselect';
+import { selectCurrentUser } from './redux/user/user.selectors';
+
+
 
 /*use <Switch> to have more control over the code and where the user can go and if only one route
 matches, it is the only thing that'll be rendered */
@@ -54,7 +61,8 @@ class  App extends React.Component {
         <Header />
         <Switch>
           <Route exact path='/' component={HomePage} />
-          <Route exact path='/shop' component={ShopPage} />
+          <Route path='/shop' component={ShopPage} />
+          <Route exact path='/checkout' component={CheckoutPage} />
           {/*below checks to see if a user is signed in and redirects back to the homepage if a user is signed in */}
           <Route exact path='/signin' render={() => this.props.currentUser ? (<Redirect to='/'/>) : (<SignInAndSignUpPage/>)}/>
         </Switch>
