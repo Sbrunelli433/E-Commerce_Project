@@ -31,7 +31,6 @@ case CartActionTypes.CLEAR_ITEM_FROM_CART:
             cartItem => cartItem.id !== action.payload.id 
             )
         };
-
             default: 
                 return state;
         }
