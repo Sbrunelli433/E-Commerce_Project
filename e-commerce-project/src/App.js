@@ -9,6 +9,8 @@ import SignInAndSignUpPage from './pages/sign-in-and-sign-up/sign-in-and-sign-up
 import Header from './components/header/header.component.jsx';
 import {auth, createUserProfileDocument} from './firebase/firebase.utils';
 import { setCurrentUser } from './redux/user/user.actions';
+import {selectCurrentUser} from './redux/user/user.selectors';
+import {createStructuredSelector} from 'reselect';
 
 /*use <Switch> to have more control over the code and where the user can go and if only one route
 matches, it is the only thing that'll be rendered */
@@ -61,9 +63,9 @@ class  App extends React.Component {
     }
 }
 
-
-const mapStateToProps = ({ user }) => ({
-  currentUser: user.currentUser
+//refactored to take out state and use createStructuredSelector and memoized the selector
+const mapStateToProps = createStructuredSelector ({
+  currentUser: selectCurrentUser
 });
 
 //dispatch is passing through an action object that is going to every producer

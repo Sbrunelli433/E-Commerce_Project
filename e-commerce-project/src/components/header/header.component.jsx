@@ -1,10 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {createStructuredSelector} from 'reselect';
+
 import { Link } from 'react-router-dom';
 import{auth} from '../../firebase/firebase.utils';
 import { ReactComponent as Logo }from '../../assets/crown.svg';
 import CartIcon from '../cart-icon/cart-icon.component';
 import CartDropdown from '../cart-dropdown/cart-dropdown.component';
+import {selectCartHidden} from '../../redux/cart/cart.selectors';
+import {selectCurrentUser} from '../../redux/user/user.selectors';
+
 
 import'./header.styles.scss';
 
@@ -45,11 +50,10 @@ const Header = ({currentUser, hidden}) => (
     </div>
 );
 
-//use this to get currentUser value (null) passed in as the current user
-//destructure state to get nested values. Note the syntax with the curly braces
-const mapStateToProps = ({user: {currentUser},cart: {hidden}}) => ({
-    currentUser,
-    hidden
+//refactored to take out state and use createStructuredSelector and memoized the selector
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    hidden: selectCartHidden
 });
 
  export default connect(mapStateToProps)(Header);

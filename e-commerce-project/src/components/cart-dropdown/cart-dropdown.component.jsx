@@ -5,6 +5,8 @@ import { selectCartItems } from '../../redux/cart/cart.selectors'
 import CustomButton from '../custom-button/custom-button.component';
 import CartItem from '../cart-item/cart-item.component';
 
+import {createStructuredSelector} from 'reselect';
+
 import './cart-dropdown.styles.scss';
 
 
@@ -24,8 +26,8 @@ const CartDropdown = ({ cartItems }) => (
     </div>
 );
 
-//brings in state and selectCartItems to avoid re-rendering the page and keep the cart full when user signs out
-const mapStateToProps = (state) => ({
-    cartItems: selectCartItems(state)
+//refactored to take out state and use createStructuredSelector and memoized the selector
+const mapStateToProps = createStructuredSelector ({
+    cartItems: selectCartItems
 });
  export default connect(mapStateToProps)(CartDropdown);
