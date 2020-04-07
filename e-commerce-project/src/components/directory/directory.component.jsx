@@ -9,8 +9,8 @@ import MenuItem from '../menu-item/menu-item.component';
 
 import './directory.styles.scss';
 
-//needs to be a class component to store state value of menu items
 
+/* Directory items are stored in selectDirectorySections. The routes for each page are listed there as well */
 const Directory = ({ sections }) => (
     /*this allows the menu-item.component.jsx to dynamically populate the array items to the 
     menu-item.component as it is imported in*/
