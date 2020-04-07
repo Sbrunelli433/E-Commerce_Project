@@ -18,9 +18,8 @@ const CollectionPage = ({ collection }) => {
             <div className='items'>
                     {/*BELOW ON LINE 22: map over the items array and render the CollectionItem
                     CollectionItem has a key of the item.id and passing the item property*/}
-                    {
-                        items.map(item => <CollectionItem key={item.id} item={item}/>)
-                    }
+                    {items.map(item => (<CollectionItem key={item.id} item={item}/>
+                ))}
             </div>
     </div>
     );
@@ -28,11 +27,8 @@ const CollectionPage = ({ collection }) => {
 //ownProps is the props of the component we're wrapping in the connect
 //selectCollection function returns a function (state) that connects everything together
 //allows to dynamically change what object we get based on what route we are on
-const mapStateToProps = (state, ownProps) => 
-    (
-        {
+const mapStateToProps = (state, ownProps) => ({
             collection: selectCollection(ownProps.match.params.collectionId)(state)
-        }
-);
+        });
 
 export default connect(mapStateToProps)(CollectionPage);
