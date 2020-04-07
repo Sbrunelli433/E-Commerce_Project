@@ -35,3 +35,12 @@ export const selectCollection = collectionUrlParam =>
     createSelector([selectCollections],
         collections => collections[collectionUrlParam]
     );
+
+//create the selectCollectionsForPreview function for the collections-overview.component
+export const selectCollectionsForPreview = createSelector(
+    [selectCollection],
+    /*use Object.keys to give us the keys of an object we pass through as an array
+    -> get all the keys and map over the array of keys to get the value of the collections object
+    and give us an array of the objects*/    
+    collections => Object.keys(collections).map(key => collections[key])
+);
